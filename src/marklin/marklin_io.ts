@@ -19,7 +19,7 @@ export class MarklinIO {
 
             this.client = socket;
 
-            console.log('Client Connected.');
+            console.log('Client connected.');
 
             socket.on('data', data => this.onData(data));
 

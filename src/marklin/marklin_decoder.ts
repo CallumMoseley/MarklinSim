@@ -45,8 +45,10 @@ export class MarklinDecoder {
 
     private decodeTrainCommand(controller: MarklinController, code1: number, code2: number): void {
         if ((code1 & 15) === 15) {
+            console.log(`Reverse train ${code2}`);
             controller.reverseTrain(code2);
         } else if (code1 !== 31) {
+            console.log(`Train ${code2} speed ${code1}`);
             controller.setTrainSpeed(code2, code1 & 15, !!(code1 & 16));
         } else {
             console.warn(`Invalid code ${code2}.`);
@@ -55,8 +57,10 @@ export class MarklinDecoder {
 
     private decodeSwitchCommand(controller: MarklinController, code1: number, code2: number): void {
         if (code1 === 33) {
+            console.log(`Switch ${code2} straight`);
             controller.changeSwitchDirection(code2, SwitchDirection.Straight);
         } else {
+            console.log(`Switch ${code2} curved`);
             controller.changeSwitchDirection(code2, SwitchDirection.Curve);
         }
     }
